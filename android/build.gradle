@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         jcenter()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
 }
 
@@ -12,7 +13,7 @@ def safeExtGet(prop, fallback) {
 
 def _reactNativeVersion = safeExtGet("reactNative", "+")
 def _compileSdkVersion = safeExtGet("compileSdkVersion", 26)
-def _glideVersion = safeExtGet("glideVersion", "4.9.0")
+def _glideVersion = safeExtGet("glideVersion", "4.8.0-SNAPSHOT")
 def ANDROIDX_VERSION = safeExtGet('androidxVersion', "1.0.0")
 
 android {
@@ -52,6 +53,7 @@ dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:${_reactNativeVersion}"
     implementation "androidx.legacy:legacy-support-v4:$ANDROIDX_VERSION"
+    annotationProcessor "androidx.annotation:annotation:$ANDROIDX_VERSION"
     implementation("com.github.bumptech.glide:glide:${_glideVersion}") {
         exclude group: "com.android.support", module: "glide"
     }
